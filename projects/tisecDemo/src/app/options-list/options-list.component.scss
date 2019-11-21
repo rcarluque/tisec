@@ -1,0 +1,53 @@
+$primary: #8AA39B;
+$white: #fff;
+$point: #78b9a4;
+
+.category {
+  margin-bottom: 30px;
+
+  h2 {
+    font-size: 19px;
+    text-transform: uppercase;
+    color: $white;
+  }
+
+  .item {
+    width: 80%;
+    padding: 5px;
+
+    &_container {
+      display: flex;
+      align-items: center;
+      background-color: $white;
+      border-radius: 6px 6px 6px 6px;
+      -moz-border-radius: 6px 6px 6px 6px;
+      -webkit-border-radius: 6px 6px 6px 6px;
+      
+      .info {
+        padding: 20px;
+        width: 50%;
+        letter-spacing: 1px;
+  
+        .nombre {
+          font-size: 16px;
+        }
+  
+        .desc {
+          font-size: 14px;
+          color: $primary;
+        }
+  
+      }
+  
+      >h3 {
+        width: 44%;
+        margin-right: px2rem(9);
+        font-size: px2rem(15);
+        text-align: right;
+        color: $point;
+      }
+    }
+    
+  }
+
+}

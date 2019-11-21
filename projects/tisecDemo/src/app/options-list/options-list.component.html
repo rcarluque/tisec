@@ -1,0 +1,13 @@
+<div class="category">
+  <h2>- {{titulo}}</h2>
+
+  <div class="item" *ngFor="let item of itemsList">
+    <div class="item_container">
+      <div class="info">
+        <div class="nombre">{{item.nombre}}</div>
+        <div class="desc">{{item.desc}}</div>
+      </div>
+      <h3>{{item.saldo}} points.</h3>
+    </div>
+  </div>
+</div>

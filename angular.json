@@ -2,5 +2,169 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "tisec": {
+      "root": "projects/tisec",
+      "sourceRoot": "projects/tisec/src",
+      "projectType": "library",
+      "prefix": "tc",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/tisec/tsconfig.lib.json",
+            "project": "projects/tisec/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tisec/src/test.ts",
+            "tsConfig": "projects/tisec/tsconfig.spec.json",
+            "karmaConfig": "projects/tisec/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/tisec/tsconfig.lib.json",
+              "projects/tisec/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "tisecDemo": {
+      "root": "projects/tisecDemo/",
+      "sourceRoot": "projects/tisecDemo/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/tisecDemo",
+            "index": "projects/tisecDemo/src/index.html",
+            "main": "projects/tisecDemo/src/main.ts",
+            "polyfills": "projects/tisecDemo/src/polyfills.ts",
+            "tsConfig": "projects/tisecDemo/tsconfig.app.json",
+            "assets": [
+              "projects/tisecDemo/src/favicon.ico",
+              "projects/tisecDemo/src/assets"
+            ],
+            "styles": [
+              "projects/tisecDemo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/tisecDemo/src/environments/environment.ts",
+                  "with": "projects/tisecDemo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tisecDemo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tisecDemo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tisecDemo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tisecDemo/src/test.ts",
+            "polyfills": "projects/tisecDemo/src/polyfills.ts",
+            "tsConfig": "projects/tisecDemo/tsconfig.spec.json",
+            "karmaConfig": "projects/tisecDemo/karma.conf.js",
+            "styles": [
+              "projects/tisecDemo/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/tisecDemo/src/favicon.ico",
+              "projects/tisecDemo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/tisecDemo/tsconfig.app.json",
+              "projects/tisecDemo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "tisecDemo-e2e": {
+      "root": "projects/tisecDemo-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/tisecDemo-e2e/protractor.conf.js",
+            "devServerTarget": "tisecDemo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tisecDemo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/tisecDemo-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "tisec"
 }

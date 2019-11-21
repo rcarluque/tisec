@@ -1,0 +1,69 @@
+<nav>
+  <div><span (click)="isMenu = false" [ngClass]="{'active': !isMenu}">Demo en contenedor</span></div>
+  <div><span (click)="isMenu = true" [ngClass]="{'active': isMenu}">Demo en Menú</span></div>
+</nav>
+
+<div class="container_demo" *ngIf="!isMenu">
+  <h1>Demo en un contenedor / Container Demo</h1>
+  <hr>
+  
+  <div class="contenedor_panel">
+    <h1>The Heroes</h1>
+    <div class="text-info">This is a random demo of tisec library</div>
+    
+    <div class="content-container">
+      <div class="content-container_content">
+        <div class="menu">
+          <ul tcMenu>
+            <!-- Use of tcMenuItem with array iteration -->
+            <li *ngFor="let titulo of titulos" [tcMenuItem]="titulo.id">{{titulo.titulo}}</li>
+          </ul>
+        </div>
+      
+        <section>    
+          <div class="item-container" tcSection>
+            <!-- Use of atScrollItem with array iteration on component -->
+            <app-options-list 
+              *ngFor="let titulo of titulos" 
+              [titulo]="titulo.titulo" 
+              [itemsList]="exampleData" 
+              [tcSectionItem]="titulo.id"></app-options-list>
+      
+            <!-- <app-options-list 
+              [titulo]="titulos[0].titulo" 
+              [itemsList]="exampleData" 
+              [tcSectionItem]="titulos[0].id"></app-options-list>
+      
+            <app-options-list 
+              [titulo]="titulos[1].titulo" 
+              [itemsList]="exampleData2" 
+              [tcSectionItem]="titulos[1].id"></app-options-list> -->   
+          </div>
+      
+        </section>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container_menu" *ngIf="isMenu">
+  <h1>Demo en un menú / Menu Demo</h1>
+  <hr>
+
+  <div class="contenedor-menu">
+    <ul tcMenu>
+      <li *ngFor="let titulo of titulos2" [tcMenuItem]="titulo.id">{{titulo.titulo}}</li>
+    </ul>
+
+    <div class="page_content" tcSection>
+      <section tcSectionItem="av">Sección Avengers</section>
+      <section tcSectionItem="ex">Sección Extraterrestials</section>
+      <section tcSectionItem="rp">Sección Radiation Powers</section>
+      <section tcSectionItem="s">Sección Conventionals</section>
+      <section tcSectionItem="gi">Sección Gifteds</section>
+      <section tcSectionItem="go">Sección Gods</section>
+    </div>
+
+  </div>
+</div>
